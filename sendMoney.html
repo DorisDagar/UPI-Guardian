@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Guardian - Send Money</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <div class="logo-shield"><i class="fa-solid fa-shield"></i><span>₹</span></div>
+            <div class="logo-text">
+                <h2>UPI Guardian</h2>
+                <p>Explain Before You Pay</p>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="#"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+            <a href="#" class="active"><i class="fa-regular fa-paper-plane"></i><span>Send Money</span></a>
+            <a href="#"><i class="fa-solid fa-qrcode"></i><span>Scan & Pay</span></a>
+            <a href="#"><i class="fa-solid fa-clipboard-list"></i><span>Payment Requests</span></a>
+            <a href="#"><i class="fa-solid fa-list"></i><span>Transactions</span></a>
+            <a href="#"><i class="fa-regular fa-comment-dots"></i><span>Message Analyzer</span></a>
+            <a href="#"><i class="fa-solid fa-chart-simple"></i><span>Insights</span></a>
+            <a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+            <a href="#"><i class="fa-regular fa-circle-question"></i><span>Help & Support</span></a>
+        </div>
+        <div class="safety-card">
+            <div class="safety-icon"><i class="fa-solid fa-shield"></i><span>₹</span></div>
+            <h3>Stay Safe, Pay Smart.</h3>
+            <p>UPI Guardian protects you</p><p>from fraud and helps you</p><p>make safe payments.</p>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="top-header">
+            <div class="page-title">
+                <div class="back-button"><i class="fa-solid fa-arrow-left"></i></div>
+                <div>
+                    <h1>Send Money</h1>
+                    <p>Send money securely with UPI Guardian</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="protection">
+                    <i class="fa-regular fa-shield"></i>
+                    <span>Protection Active</span>
+                    <span class="green-dot"></span>
+                </div>
+                <div class="notification"><i class="fa-regular fa-bell"></i></div>
+                <div class="user">
+                    <div class="user-circle">A</div>
+                    <strong>abc</strong>
+                    <i class="fa-solid fa-chevron-down user-arrow"></i>
+                </div>
+            </div>
+        </div>
+        <div class="send-money-card">
+            <div class="left-side">
+                <h2>Enter Recipient Details</h2>
+                <div class="tabs">
+                    <div class="tab active-tab">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <span>UPI ID</span>
+                    </div>
+                    <div class="tab">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <span>Mobile Number</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">UPI ID</label>
+                    <div class="input-box">
+                        <div class="input-icon"><i class="fa-regular fa-user"></i></div>
+                        <input type="text" placeholder="Enter UPI ID (e.g. name@upi)">
+                        <i class="fa-solid fa-circle-check verified"></i>
+                    </div>
+                </div>
+                <div class="recent-upi">
+                    Recent / Saved UPI IDs
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="amount-heading">
+                    <label>Amount</label>
+                    <a href="#" class="add-note-link">Add Note (Optional)</a>
+                </div>
+                <div class="input-box">
+                    <div class="rupee-symbol">₹</div>
+                    <input type="number" placeholder="Enter amount">
+                </div>
+                <div class="quick-amounts">
+                    <button>+ ₹100</button>
+                    <button>+ ₹500</button>
+                    <button>+ ₹1,000</button>
+                    <button>+ ₹2,000</button>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Note<span class="optional">(Optional)</span></label>
+                    <div class="input-box note-input">
+                        <i class="fa-regular fa-comment"></i>
+                        <input type="text" placeholder="Add a note or message">
+                    </div>
+                    <div class="character-count">0/50</div>
+                </div>
+                <button class="continue-button"><span>Continue</span><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div class="right-side">
+                <h2>Transaction Summary</h2>
+                <div class="summary-box">
+                    <div class="summary-row">
+                        <span>To</span>
+                        <span class="summary-light">Not Entered</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>UPI ID</span>
+                        <span>-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Amount</span>
+                        <strong class="summary-amount">₹0</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Note</span>
+                        <span>-</span>
+                    </div>
+                </div>
+                <div class="security-box">
+                    <div class="security-heading">
+                        <div class="security-shield"><i class="fa-solid fa-shield"></i><span>₹</span></div>
+                        <h3> UPI Guardian will analyze this transaction for your safety.</h3>
+                    </div>
+                    <div class="security-points">
+                        <p><i class="fa-solid fa-check"></i><span>Fraud detection & risk analysis</span></p>
+                        <p><i class="fa-solid fa-check"></i><span>Recipient verification</span></p>
+                        <p><i class="fa-solid fa-check"></i><span>Transaction pattern check</span></p>
+                        <p><i class="fa-solid fa-check"></i><span>Real-time security scan</span></p>
+                    </div>
+                </div>
+                <div class="information-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <p>You will see the risk analysis before confirming the payment.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>    
+
+
+
