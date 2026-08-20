@@ -66,6 +66,10 @@ body {
 .navigation .active {
     background: #5824db;
 }
+.navigation a:hover {
+    color: white;
+    background: rgba(99, 54, 232, 0.25);
+}
 .safety-card {
     position: absolute;
     bottom: 25px;

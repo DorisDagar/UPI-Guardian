@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>UPI Guardian - Message Analyzer</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style5.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <div class="logo-shield"><i class="fa-solid fa-shield"></i><span>₹</span></div>
+            <div class="logo-text">
+                <h2>UPI Guardian</h2>
+                <p>Explain Before You Pay</p>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="#"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+            <a href="#"><i class="fa-regular fa-paper-plane"></i><span>Send Money</span></a>
+            <a href="#"><i class="fa-solid fa-qrcode"></i><span>Scan & Pay</span></a>
+            <a href="#"><i class="fa-solid fa-clipboard-list"></i><span>Payment Requests</span></a>
+            <a href="#"><i class="fa-solid fa-list"></i><span>Transactions</span></a>
+            <a href="#" class="active"><i class="fa-regular fa-comment-dots"></i><span>Message Analyzer</span></a>
+            <a href="#"><i class="fa-solid fa-chart-simple"></i><span>Insights</span></a>
+            <a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+            <a href="#"><i class="fa-regular fa-circle-question"></i><span>Help & Support</span></a>
+        </div>
+        <div class="safety-card">
+            <div class="safety-icon"><i class="fa-solid fa-shield"></i><span>₹</span></div>
+            <h3>Stay Safe, Pay Smart.</h3>
+            <p>UPI Guardian protects you</p><p>from fraud and helps you</p><p>make safe payments.</p>
+        </div>
+    </div>
+    <main class="main">
+        <header class="header">
+            <div class="welcome">
+                <h1>Hello, Geetanshi! 👋</h1>
+                <p>Let's keep your payments safe today.</p>
+            </div>
+            <div class="profile">
+                <div class="protection">
+                    <i class="fa-solid fa-shield"></i>
+                    <span>Protection Active</span>
+                    <span class="green-dot"></span>
+                </div>
+                <div class="notification"><i class="fa-regular fa-bell"></i></div>
+                <div class="user">
+                    <div class="user-circle">G</div>
+                    <strong>Geetanshi</strong>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="page-title">
+                <div class="heading-text">
+                    <h1>Message Analyzer</h1>
+                    <p>Analyze suspicious messages and detect scams</p>
+                </div>
+                <div class="heading-image">
+                    <img src="img/analyze.png" alt="Message Analyzer">
+                </div>
+            </div>
+            <div class="analyzer-area">
+                <div class="card">
+                    <h2 class="card-title">Analyze a Message</h2>
+                    <p class="card-subtitle">Paste a message or upload a screenshot</p>
+                    <label class="label">Paste Message</label>
+                    <textarea placeholder="Paste the suspicious message here..."></textarea>
+                    <p class="counter">0/1000</p>
+                    <div class="or">
+                        <div></div>
+                        <span>OR</span>
+                        <div></div>
+                    </div>
+                    <label class="label">Upload Screenshot</label>
+                    <div class="upload-box"><i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p>Click to upload or drag and drop</p>
+                        <span> PNG, JPG, JPEG (Max. 5MB)</span>
+                    </div>
+                    <button class="analyze-button"><i class="fa-solid fa-shield"></i>Analyze Message</button>
+                </div>
+                <div class="card">
+                    <h2 class="card-title">Analysis Result</h2>
+                    <div class="risk-summary">
+                        <div class="risk-circle">85%</div>
+                        <div class="risk-text">
+                            <h3>High Risk</h3>
+                            <p>This message is likely a scam.</p>
+                            <span class="caution"><i class="fa-solid fa-circle-exclamation"></i>Be cautious!</span>
+                        </div>
+                    </div>
+                    <div class="result-box">
+                        <h3> Risk Factors</h3>
+                        <div class="risk-item">
+                            <span class="risk-dot"></span>
+                            <span class="risk-name">Urgent payment request</span>
+                            <span class="level high"> High</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-dot"></span>
+                            <span class="risk-name">Suspicious link detected</span>
+                            <span class="level high">High</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-dot"></span>
+                            <span class="risk-name">Unknown sender</span>
+                            <span class="level medium">Medium</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-dot"></span>
+                            <span class="risk-name">Reward / lottery mentioned</span>
+                            <span class="level medium">Medium</span>
+                        </div>
+                    </div>
+                    <div class="result-box">
+                        <h3>Detected Elements</h3>
+                        <div class="detected-item">
+                            <div class="detected-icon"><i class="fa-solid fa-link"></i></div>
+                            <p class="detected-text">http://bit.ly/claim-reward</p>
+                            <span class="detected-tag">Suspicious Link</span>
+                        </div>
+                        <div class="detected-item">
+                            <div class="detected-icon"><i class="fa-solid fa-tag"></i></div>
+                            <p class="detected-text">Lottery, Reward, Cash Prize</p>
+                            <span class="detected-tag">Scam Keywords</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tips">
+                <div class="tips-title">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Stay Safe Tips</span>
+                </div>
+                <div class="tips-list">
+                    <div class="tip">
+                        <img src="images/safety-shield.png" alt="Protect your account">
+                        <div>
+                            <h4>Protect your account</h4>
+                            <p>Never share OTP or UPI PIN with anyone</p>
+                        </div>
+                    </div>
+                    <div class="tip">
+                        <img src="images/safety-link.png" alt="Avoid suspicious links">
+                        <div>
+                            <h4>Check every link</h4>
+                            <p>Avoid clicking links from unknown senders.</p>
+                        </div>
+                    </div>
+                    <div class="tip">
+                        <img src="images/safety-person.png" alt="Verify people">
+                        <div>
+                            <h4>Verify the sender</h4>
+                            <p>Confirm payment requests through official channels.</p>
+                        </div>
+                    </div>
+                    <div class="tip">
+                        <img src="images/safety-warning.png" alt="Stay alert">
+                        <div>
+                            <h4>Stay alert </h4>
+                            <p>Report suspicious messages and possible scams.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
