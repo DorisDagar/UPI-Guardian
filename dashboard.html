@@ -37,7 +37,7 @@
     <main class="main">
         <header class="header">
             <div class="welcome">
-                <h1>Good Morning, Geetanshi! 👋</h1>
+                <h1 id="welcomeHeading">Good Morning! 👋</h1>
                 <p>Let's keep your payments safe today.</p>
             </div>
             <div class="profile">
@@ -47,10 +47,13 @@
                     <span class="green-dot"></span>
                 </div>
                 <div class="notification"><i class="fa-regular fa-bell"></i></div>
-                <div class="user">
-                    <div class="user-circle">G</div>
-                    <strong>Geetanshi</strong>
+                <div class="user" id="userMenu">
+                    <div class="user-circle" id="userInitial">?</div>
+                    <strong id="userName">Account</strong>
                     <i class="fa-solid fa-chevron-down"></i>
+                    <div class="user-dropdown" id="userDropdown" hidden>
+                        <button type="button" id="logoutButton"><i class="fa-solid fa-right-from-bracket"></i> Log out</button>
+                    </div>
                 </div>
             </div>
         </header>
@@ -290,6 +293,11 @@
             <a href="#">Learn more about staying safe<i class="fa-solid fa-arrow-right"></i></a>
         </footer>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard-auth.js"></script>
 </body>
 </html>
 
