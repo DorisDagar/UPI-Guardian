@@ -5,8 +5,9 @@
  * 2. Copy the "Project URL" and the "anon public" key (NOT the
  *    service_role key - that one must never be used in frontend code).
  * 3. Paste them below.
- * 4. Run supabase/schema.sql once in the Supabase SQL Editor to
- *    create the `transactions` table.
+ * 4. Run schema.sql once in the Supabase SQL Editor to create the
+ *    `transactions` and `profiles` tables (profiles powers the
+ *    login/sign up screens in js/auth.js).
  * -----------------------------------------------------------------
  */
 const SUPABASE_URL = "https://mdfjruikqgjobracoirr.supabase.co";
