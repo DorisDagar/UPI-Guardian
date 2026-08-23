@@ -64,7 +64,61 @@ create policy "Users can delete own transactions"
 --   using (true)
 --   with check (true);
 
--- 3. Sample data (optional) ---------------------------------------------
+-- 3. Profiles (full name + mobile number for the logged-in user) --------
+-- login.html / signup.html sign people in with Supabase Auth using a
+-- synthetic email built from their mobile number (see js/auth.js). This
+-- table stores the human-friendly details so pages like the dashboard
+-- can greet the user by name.
+create table if not exists public.profiles (
+  id          uuid primary key references auth.users (id) on delete cascade,
+  full_name   text,
+  mobile      text,
+  updated_at  timestamptz not null default now()
+);
+
+alter table public.profiles enable row level security;
+
+drop policy if exists "Users can view own profile" on public.profiles;
+create policy "Users can view own profile"
+  on public.profiles for select
+  using (auth.uid() = id);
+
+drop policy if exists "Users can upsert own profile" on public.profiles;
+create policy "Users can upsert own profile"
+  on public.profiles for insert
+  with check (auth.uid() = id);
+
+drop policy if exists "Users can update own profile" on public.profiles;
+create policy "Users can update own profile"
+  on public.profiles for update
+  using (auth.uid() = id);
+
+-- Automatically create a profile row whenever someone signs up, using the
+-- full_name / mobile passed in from js/auth.js signUp(). This means the
+-- profile exists even if the client-side upsert in auth.js is skipped.
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer set search_path = public
+as $$
+begin
+  insert into public.profiles (id, full_name, mobile)
+  values (
+    new.id,
+    new.raw_user_meta_data ->> 'full_name',
+    new.raw_user_meta_data ->> 'mobile'
+  )
+  on conflict (id) do nothing;
+  return new;
+end;
+$$;
+
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute procedure public.handle_new_user();
+
+-- 4. Sample data (optional) ---------------------------------------------
 -- Only useful while Option B is active, or after you've signed in and
 -- swapped in your own user_id. Safe to delete this whole block.
 --
