@@ -105,7 +105,10 @@
     els.seedBtn.disabled = true;
     els.seedBtn.textContent = "Adding sample data...";
     try {
-      const { error } = await window.supabaseClient.from("transactions").insert(SAMPLE_TRANSACTIONS);
+      const { data: userData } = await window.supabaseClient.auth.getUser();
+      const uid = userData && userData.user && userData.user.id;
+      const rows = SAMPLE_TRANSACTIONS.map((t) => ({ ...t, user_id: uid, status: "success" }));
+      const { error } = await window.supabaseClient.from("transactions").insert(rows);
       if (error) throw error;
       await loadTransactions();
     } catch (err) {
@@ -191,28 +194,7 @@
   }
 
   function rowHtml(tx) {
-    const icon = CATEGORY_ICON[tx.category] || CATEGORY_ICON.other;
-    const initial = (tx.payee_name || "?").trim().charAt(0).toUpperCase();
-    const riskClass = tx.risk_level === "high" ? "high" : tx.risk_level === "medium" ? "medium" : "low";
-    const riskLabel = riskClass.charAt(0).toUpperCase() + riskClass.slice(1) + " Risk";
-    const amountClass = riskClass === "high" ? "danger-text" : "";
-    const sign = tx.direction === "received" ? "+" : "-";
-    const iconBg = riskClass === "high" ? "danger" : tx.direction === "received" ? "sister" : "person";
-
-    return `
-      <div class="transaction">
-        <div class="transaction-icon ${iconBg}"><i class="${icon}"></i></div>
-        <div class="transaction-name">
-          <strong>${escapeHtml(tx.payee_name)}</strong>
-          <small>${escapeHtml(tx.upi_id)}${tx.note ? " &middot; " + escapeHtml(tx.note) : ""}</small>
-        </div>
-        <div class="transaction-details">
-          <strong class="${amountClass}">${sign}${formatINR(tx.amount)}</strong>
-          <small>${formatDate(tx.created_at)}</small>
-        </div>
-        <span class="risk ${riskClass}">${riskLabel}</span>
-        <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
-      </div>`;
+    return window.TxUtils.transactionRowHtml(tx);
   }
 
   function renderPagination(totalPages) {
@@ -247,27 +229,7 @@
   }
 
   function formatINR(amount) {
-    return "₹" + Number(amount || 0).toLocaleString("en-IN", { maximumFractionDigits: 0 });
-  }
-
-  function formatDate(iso) {
-    if (!iso) return "";
-    const d = new Date(iso);
-    const today = new Date();
-    const isToday = d.toDateString() === today.toDateString();
-    const yesterday = new Date(today);
-    yesterday.setDate(today.getDate() - 1);
-    const isYesterday = d.toDateString() === yesterday.toDateString();
-    const time = d.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
-    if (isToday) return "Today, " + time;
-    if (isYesterday) return "Yesterday, " + time;
-    return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) + ", " + time;
-  }
-
-  function escapeHtml(str) {
-    return String(str || "").replace(/[&<>"']/g, (c) => ({
-      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-    }[c]));
+    return window.TxUtils.formatINR(amount);
   }
 
   function debounce(fn, ms) {
