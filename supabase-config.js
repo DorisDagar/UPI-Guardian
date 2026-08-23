@@ -9,8 +9,8 @@
  *    create the `transactions` table.
  * -----------------------------------------------------------------
  */
-const SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co";
-const SUPABASE_ANON_KEY = "YOUR-ANON-PUBLIC-KEY";
+const SUPABASE_URL = "https://mdfjruikqgjobracoirr.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_MjQPiKliUC6h39BoaX0GCQ_EfvCi3ME";
 
 // Shared client used across every page (loaded after the Supabase CDN script).
 window.supabaseClient = (SUPABASE_URL.includes("YOUR-PROJECT-REF") || SUPABASE_ANON_KEY.includes("YOUR-ANON"))
