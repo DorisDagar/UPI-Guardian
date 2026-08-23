@@ -186,6 +186,33 @@ body {
     cursor: pointer;
     margin-left: 5px;
 }
+.auth-message {
+    padding: 9px 12px;
+    border-radius: 7px;
+    font-size: 11px;
+    margin-bottom: 14px;
+    line-height: 1.4;
+}
+.auth-message.error {
+    background: rgba(255, 70, 70, 0.12);
+    border: 1px solid rgba(255, 70, 70, 0.4);
+    color: #ff9b9b;
+}
+.auth-message.success {
+    background: rgba(60, 200, 120, 0.12);
+    border: 1px solid rgba(60, 200, 120, 0.4);
+    color: #7fe3a8;
+}
+.auth-message.info {
+    background: rgba(90, 169, 255, 0.12);
+    border: 1px solid rgba(90, 169, 255, 0.4);
+    color: #9cc6ff;
+}
+.create-account:disabled,
+.google:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
 .terms {
     display: flex;
     align-items: center;
