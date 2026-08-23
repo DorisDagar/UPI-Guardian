@@ -5,9 +5,11 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title>UPI Guardian - Message Analyzer</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style5.css">
+    <link rel="stylesheet" href="style-shared.css">
 </head>
 <body>
     <div class="sidebar">
@@ -20,14 +22,14 @@
         </div>
         <div class="navigation">
             <a href="dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
-            <a href="#"><i class="fa-regular fa-paper-plane"></i><span>Send Money</span></a>
-            <a href="#"><i class="fa-solid fa-qrcode"></i><span>Scan & Pay</span></a>
-            <a href="#"><i class="fa-solid fa-clipboard-list"></i><span>Payment Requests</span></a>
+            <a href="sendMoney.html"><i class="fa-regular fa-paper-plane"></i><span>Send Money</span></a>
+            <a href="scan-pay.html"><i class="fa-solid fa-qrcode"></i><span>Scan &amp; Pay</span></a>
+            <a href="payment-requests.html"><i class="fa-solid fa-clipboard-list"></i><span>Payment Requests</span></a>
             <a href="transactions.html"><i class="fa-solid fa-list"></i><span>Transactions</span></a>
-            <a href="#" class="active"><i class="fa-regular fa-comment-dots"></i><span>Message Analyzer</span></a>
-            <a href="#"><i class="fa-solid fa-chart-simple"></i><span>Insights</span></a>
-            <a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
-            <a href="#"><i class="fa-regular fa-circle-question"></i><span>Help & Support</span></a>
+            <a href="message-analyzer.html" class="active"><i class="fa-regular fa-comment-dots"></i><span>Message Analyzer</span></a>
+            <a href="insights.html"><i class="fa-solid fa-chart-simple"></i><span>Insights</span></a>
+            <a href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+            <a href="help.html"><i class="fa-regular fa-circle-question"></i><span>Help &amp; Support</span></a>
         </div>
         <div class="safety-card">
             <div class="safety-icon"><i class="fa-solid fa-shield"></i><span>₹</span></div>
@@ -38,7 +40,7 @@
     <main class="main">
         <header class="header">
             <div class="welcome">
-                <h1>Hello, Geetanshi! 👋</h1>
+                <h1 id="welcomeHeading">Message Analyzer</h1>
                 <p>Let's keep your payments safe today.</p>
             </div>
             <div class="profile">
@@ -47,11 +49,21 @@
                     <span>Protection Active</span>
                     <span class="green-dot"></span>
                 </div>
-                <div class="notification"><i class="fa-regular fa-bell"></i></div>
-                <div class="user">
-                    <div class="user-circle">G</div>
-                    <strong>Geetanshi</strong>
+                <div class="notification" id="notifBell">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notif-badge" id="notifBadge" hidden>0</span>
+                    <div class="notif-dropdown" id="notifDropdown" hidden>
+                        <div class="notif-dropdown-header">Recent alerts</div>
+                        <div id="notifList"><div class="notif-empty">Loading…</div></div>
+                    </div>
+                </div>
+                <div class="user" id="userMenu">
+                    <div class="user-circle" id="userInitial">?</div>
+                    <strong id="userName">Account</strong>
                     <i class="fa-solid fa-chevron-down"></i>
+                    <div class="user-dropdown" id="userDropdown" hidden>
+                        <button type="button" id="logoutButton"><i class="fa-solid fa-right-from-bracket"></i> Log out</button>
+                    </div>
                 </div>
             </div>
         </header>
@@ -62,7 +74,18 @@
                     <p>Analyze suspicious messages and detect scams</p>
                 </div>
                 <div class="heading-image">
-                    <img src="img/analyze.png" alt="Message Analyzer">
+                    <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+                        <defs><linearGradient id="maGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#8b6bf0"/><stop offset="1" stop-color="#5a3fd6"/>
+                        </linearGradient></defs>
+                        <circle cx="80" cy="80" r="76" fill="#f3f0ff"/>
+                        <rect x="40" y="46" width="80" height="60" rx="10" fill="url(#maGrad)"/>
+                        <rect x="50" y="58" width="60" height="6" rx="3" fill="#fff" opacity=".85"/>
+                        <rect x="50" y="70" width="44" height="6" rx="3" fill="#fff" opacity=".6"/>
+                        <rect x="50" y="82" width="52" height="6" rx="3" fill="#fff" opacity=".6"/>
+                        <circle cx="118" cy="102" r="20" fill="#fff"/>
+                        <path d="M118 92 L118 104 M118 110 L118 111" stroke="#e13a3a" stroke-width="5" stroke-linecap="round"/>
+                    </svg>
                 </div>
             </div>
             <div class="analyzer-area">
@@ -70,64 +93,28 @@
                     <h2 class="card-title">Analyze a Message</h2>
                     <p class="card-subtitle">Paste a message or upload a screenshot</p>
                     <label class="label">Paste Message</label>
-                    <textarea placeholder="Paste the suspicious message here..."></textarea>
-                    <p class="counter">0/1000</p>
+                    <textarea id="messageInput" maxlength="1000" placeholder="Paste the suspicious message here..."></textarea>
+                    <p class="counter"><span id="charCount">0</span>/1000</p>
                     <div class="or">
                         <div></div>
                         <span>OR</span>
                         <div></div>
                     </div>
                     <label class="label">Upload Screenshot</label>
-                    <div class="upload-box"><i class="fa-solid fa-cloud-arrow-up"></i>
-                        <p>Click to upload or drag and drop</p>
+                    <div class="upload-box" id="uploadBox">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p id="uploadStatus">Click to upload or drag and drop</p>
                         <span> PNG, JPG, JPEG (Max. 5MB)</span>
+                        <input type="file" id="screenshotInput" accept="image/png,image/jpeg" style="display:none;">
                     </div>
-                    <button class="analyze-button"><i class="fa-solid fa-shield"></i>Analyze Message</button>
+                    <button class="analyze-button" id="analyzeBtn" disabled><i class="fa-solid fa-shield"></i>Analyze Message</button>
                 </div>
-                <div class="card">
+                <div class="card" id="resultCard">
                     <h2 class="card-title">Analysis Result</h2>
-                    <div class="risk-summary">
-                        <div class="risk-circle">85%</div>
-                        <div class="risk-text">
-                            <h3>High Risk</h3>
-                            <p>This message is likely a scam.</p>
-                            <span class="caution"><i class="fa-solid fa-circle-exclamation"></i>Be cautious!</span>
-                        </div>
-                    </div>
-                    <div class="result-box">
-                        <h3> Risk Factors</h3>
-                        <div class="risk-item">
-                            <span class="risk-dot"></span>
-                            <span class="risk-name">Urgent payment request</span>
-                            <span class="level high"> High</span>
-                        </div>
-                        <div class="risk-item">
-                            <span class="risk-dot"></span>
-                            <span class="risk-name">Suspicious link detected</span>
-                            <span class="level high">High</span>
-                        </div>
-                        <div class="risk-item">
-                            <span class="risk-dot"></span>
-                            <span class="risk-name">Unknown sender</span>
-                            <span class="level medium">Medium</span>
-                        </div>
-                        <div class="risk-item">
-                            <span class="risk-dot"></span>
-                            <span class="risk-name">Reward / lottery mentioned</span>
-                            <span class="level medium">Medium</span>
-                        </div>
-                    </div>
-                    <div class="result-box">
-                        <h3>Detected Elements</h3>
-                        <div class="detected-item">
-                            <div class="detected-icon"><i class="fa-solid fa-link"></i></div>
-                            <p class="detected-text">http://bit.ly/claim-reward</p>
-                            <span class="detected-tag">Suspicious Link</span>
-                        </div>
-                        <div class="detected-item">
-                            <div class="detected-icon"><i class="fa-solid fa-tag"></i></div>
-                            <p class="detected-text">Lottery, Reward, Cash Prize</p>
-                            <span class="detected-tag">Scam Keywords</span>
+                    <div id="resultBody">
+                        <div class="state-block" style="padding:30px 10px;">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <p>Paste a message and click Analyze to see results here.</p>
                         </div>
                     </div>
                 </div>
@@ -139,28 +126,28 @@
                 </div>
                 <div class="tips-list">
                     <div class="tip">
-                        <img src="images/safety-shield.png" alt="Protect your account">
+                        <i class="fa-solid fa-lock" style="font-size:28px;color:#6737e9;width:55px;text-align:center;"></i>
                         <div>
                             <h4>Protect your account</h4>
                             <p>Never share OTP or UPI PIN with anyone</p>
                         </div>
                     </div>
                     <div class="tip">
-                        <img src="images/safety-link.png" alt="Avoid suspicious links">
+                        <i class="fa-solid fa-link-slash" style="font-size:28px;color:#2188ed;width:55px;text-align:center;"></i>
                         <div>
                             <h4>Check every link</h4>
                             <p>Avoid clicking links from unknown senders.</p>
                         </div>
                     </div>
                     <div class="tip">
-                        <img src="images/safety-person.png" alt="Verify people">
+                        <i class="fa-solid fa-user-shield" style="font-size:28px;color:#18ad68;width:55px;text-align:center;"></i>
                         <div>
                             <h4>Verify the sender</h4>
                             <p>Confirm payment requests through official channels.</p>
                         </div>
                     </div>
                     <div class="tip">
-                        <img src="images/safety-warning.png" alt="Stay alert">
+                        <i class="fa-solid fa-triangle-exclamation" style="font-size:28px;color:#e99124;width:55px;text-align:center;"></i>
                         <div>
                             <h4>Stay alert </h4>
                             <p>Report suspicious messages and possible scams.</p>
@@ -174,6 +161,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-config.js"></script>
     <script src="js/auth.js"></script>
-    <script>if (window.UPIGuardianAuth) window.UPIGuardianAuth.requireAuth();</script>
+    <script src="js/risk-engine.js"></script>
+    <script src="js/tx-utils.js"></script>
+    <script src="js/ui-kit.js"></script>
+    <script src="js/page-chrome.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="js/message-analyzer.js"></script>
 </body>
 </html>
