@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UPI Guardian - Sign Up</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style4.css">
@@ -24,7 +25,29 @@
     </header>
     <main class="signup-card">
         <section class="left-panel">
-            <img src="img/signUp.png" alt="UPI Guardian">
+            <svg viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Person paying safely with UPI Guardian">
+                <defs>
+                    <linearGradient id="signupBg" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#0c1440"/><stop offset="1" stop-color="#06133b"/>
+                    </linearGradient>
+                    <linearGradient id="signupShield" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#7135d8"/><stop offset="1" stop-color="#2188ed"/>
+                    </linearGradient>
+                </defs>
+                <rect width="400" height="560" fill="url(#signupBg)"/>
+                <circle cx="320" cy="120" r="90" fill="#141c56" opacity=".6"/>
+                <circle cx="60" cy="460" r="70" fill="#141c56" opacity=".5"/>
+                <path d="M200 90 L280 122 V190 C280 250 244 292 200 310 C156 292 120 250 120 190 V122 Z" fill="url(#signupShield)"/>
+                <path d="M170 205 L195 230 L235 178" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="90" y="360" width="220" height="130" rx="16" fill="#141c56" stroke="#2a3670"/>
+                <rect x="112" y="384" width="120" height="12" rx="6" fill="#3a4576"/>
+                <rect x="112" y="408" width="80" height="10" rx="5" fill="#28315f"/>
+                <rect x="112" y="440" width="176" height="30" rx="8" fill="#2db56c" opacity=".18" stroke="#2db56c"/>
+                <text x="200" y="460" font-size="13" text-anchor="middle" fill="#2db56c" font-family="Arial, sans-serif">Payment Verified ✓</text>
+                <circle cx="60" cy="70" r="5" fill="#4d7cff"/>
+                <circle cx="345" cy="260" r="4" fill="#a077f7"/>
+                <circle cx="40" cy="220" r="4" fill="#2db56c"/>
+            </svg>
         </section>
         <section class="right-panel">
             <p class="top-title">CREATE YOUR ACCOUNT</p>
