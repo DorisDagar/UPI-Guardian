@@ -424,6 +424,10 @@ textarea:focus {
     color: #d98a18;
     background: #fff7e8;
 }
+.level.low {
+    color: #0a8f4a;
+    background: #e9f9f0;
+}
 .detected-item {
     display: flex;
     align-items: center;
