@@ -19,7 +19,7 @@
         </div>
         <div class="nav-buttons">
             <a href="login.html" class="login">Login</a>
-            <button class="get-started-btn">Get Started</button>
+            <button class="get-started-btn" onclick="window.location.href='signup.html'">Get Started</button>
         </div>
     </header>
     <main class="main-container">
@@ -43,29 +43,43 @@
             <h1>Welcome Back!</h1>
             <p class="login-text">Login to continue to your secure account</p>
             <div class="login-options">
-                <button class="login-option active">Login</button>
-                <button class="login-option">Sign Up</button>
+                <button type="button" class="login-option active">Login</button>
+                <button type="button" class="login-option" onclick="window.location.href='signup.html'">Sign Up</button>
             </div>
-            <label for="mobile">Mobile Number</label>
-            <div class="mobile-input">
-                <span class="country-code">+91</span>
-                <input type="tel" id="mobile" placeholder="Enter your mobile number" maxlength="10">
-            </div>
-            <label for="password">Password</label>
-            <input type="password" id="password" class="password-input" placeholder="Enter your password">
-            <div class="forgot-password">
-                <a href="#">Forgot Password?</a>
-            </div>
-            <button class="login-button">Login <i class="fa-solid fa-arrow-right"></i></button>
+
+            <div id="authMessage" class="auth-message" hidden></div>
+
+            <form id="loginForm" novalidate>
+                <label for="mobile">Mobile Number</label>
+                <div class="mobile-input">
+                    <span class="country-code">+91</span>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" maxlength="10" inputmode="numeric" autocomplete="tel-national" required>
+                </div>
+                <label for="password">Password</label>
+                <div class="password-wrap">
+                    <input type="password" id="password" name="password" class="password-input" placeholder="Enter your password" autocomplete="current-password" required>
+                    <i class="fa-regular fa-eye eye" id="togglePassword"></i>
+                </div>
+                <div class="forgot-password">
+                    <a href="#" id="forgotPassword">Forgot Password?</a>
+                </div>
+                <button type="submit" class="login-button" id="loginButton">Login <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
+
             <div class="or">
                 <div class="or-line"></div>
                 <span>OR</span>
                 <div class="or-line"></div>
             </div>
-            <button class="google-button"><i class="fa-brands fa-google"></i>Continue with Google</button>
+            <button type="button" class="google-button" id="googleButton"><i class="fa-brands fa-google"></i>Continue with Google</button>
             <p class="security"><i class="fa-solid fa-lock"></i>Your data is secure with us</p>
         </section>
 
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
