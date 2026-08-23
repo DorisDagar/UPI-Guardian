@@ -166,7 +166,7 @@ body {
     height: 55px;
     flex-shrink: 0;
 }
-.feature-image img {
+.feature-image img, .feature-image svg {
     width: 100%;
     height: 100%;
 }
